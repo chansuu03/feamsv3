@@ -39,6 +39,10 @@
                 </div>
             <?php endif;?>
         </div>
+        <div class="form-group"> <!-- Subject -->
+            <label for="init_post" class="required">Initial Post</label>
+            <textarea name="init_post" id="summernote"`></textarea>
+        </div>
     </div>
     <div class="card-footer">
         <button type="submit" class="float-end btn btn-primary btn-sm" >Submit</button>
@@ -49,5 +53,24 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('scripts');?>
+
+<script>
+  $('#summernote').summernote({
+    placeholder: 'Write here your initial post',
+    tabsize: 2,
+    height: 100,
+    toolbar: [
+        [ 'style', [ 'style' ] ],
+        [ 'font', [ 'bold', 'italic', 'underline', 'clear'] ],
+        [ 'fontname', [ 'fontname' ] ],
+        [ 'fontsize', [ 'fontsize' ] ],
+        [ 'color', [ 'color' ] ],
+        [ 'para', [ 'ol', 'ul', 'paragraph', 'height' ] ],
+        [ 'table', [ 'table' ] ],
+        [ 'insert', [ 'link', 'picture'] ],
+        [ 'view', [ 'undo', 'redo', 'codeview', 'help' ] ]
+    ]
+  });
+</script>
 
 <?= $this->endSection() ?>

@@ -13,6 +13,7 @@ class Discussions extends BaseController
     function __construct() {
         $this->session = session();
         $this->threadModel = new Models\ThreadModel();
+        $this->commentModel = new Models\CommentModel();
         $this->roleModel = new Roles\RoleModel();
         $this->userModel = new AppModels\UserModel();
         $this->activityLogModel = new AppModels\ActivityLogModel();
@@ -56,6 +57,12 @@ class Discussions extends BaseController
             $post['link'] = str_replace(' ', '_', $_POST['subject']);
             $post['link'] = strtolower($post['link']);
             if($this->threadModel->insert($post)) {
+                $threadData = $this->threadModel->where('link', $post['link'])->first();
+                $comment['thread_id'] = $threadData['id'];
+                $comment['user_id'] = $this->session->get('user_id');
+                $comment['comment'] = $_POST['init_post'];
+                $comment['comment_date'] = date('Y-m-d H:i:s');
+                $this->commentModel->insert($comment);
                 $activityLog['user'] = $this->session->get('user_id');
                 $activityLog['description'] = 'Added an discussion thread';
                 $this->activityLogModel->save($activityLog);
