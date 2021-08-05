@@ -322,4 +322,21 @@ class Validation
         ],
     ],
   ];
+
+  public $payments = [
+    'name' => [
+        'rules' => 'required|alpha_numeric_space',
+        'errors' => [
+            'required' => 'Name is required',
+            'alpha_numeric_space' => 'Name includes invalid symbols',
+        ],
+    ],
+    'cost' => [
+        'rules' => 'required|numeric',
+        'errors' => [
+            'required' => 'Cost is required',
+            'numeric' => 'Cost only includes numbers',
+        ],
+    ],
+  ];
 }
