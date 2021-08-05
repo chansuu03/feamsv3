@@ -231,9 +231,9 @@ class RolePermissionSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s')
             ],
             [
-                'perm_mod' => 'USR',
+                'perm_mod' => 'PAY',
 				'role_id' => '1',
-				'perm_id' => '38',
+				'perm_id' => '39',
                 'created_at' => date('Y-m-d H:i:s')
             ],
         ];

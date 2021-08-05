@@ -12,6 +12,11 @@ class UserTable extends Migration {
                     'constraint'     => 11,
                     'auto_increment' => true,
             ],
+            'member_id'          => [
+                    'type'           => 'VARCHAR',
+                    'constraint'     => 11,
+                    'auto_increment' => true,
+            ],
             'first_name'       => [
                     'type'           => 'VARCHAR',
                     'constraint'     => '50',
