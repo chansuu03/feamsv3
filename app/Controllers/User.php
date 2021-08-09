@@ -29,7 +29,7 @@ class User extends BaseController {
                     return redirect()->back()->withInput(); 
                 }
                 if($user['status'] == 'v') {
-                    $this->session->setFlashData('failMsg', 'Email not verified, please verify it first');
+                    $this->session->setFlashData('failMsg', 'Email verified, wait for the admin approval of your account');
                     return redirect()->back()->withInput(); 
                 }
                 $this->setUserSession($user);
@@ -82,10 +82,14 @@ class User extends BaseController {
         if($this->request->getMethod() == 'post') {
             if($this->validate('users')){
                 $file = $this->request->getFile('image');
+                // payment proofs
+                $proof = $this->request->getFile('proof');
+                // data to be inserted
                 $date=  date_create($_POST['birthdate']);
                 $dates = date_format($date,"Y-m-d");
                 $userData = $_POST;
-                $userData['status'] = 'v';
+                $userData['proof'] = $proof->getRandomName();
+                $userData['status'] = 'i';
                 $userData['password'] = password_hash($this->request->getVar('password'), PASSWORD_DEFAULT);
                 $userData['contact_number'] = $this->request->getVar('contact_number');
                 $userData['birthdate'] = $dates;
@@ -94,7 +98,8 @@ class User extends BaseController {
                 $this->session->remove(['failMsg', 'successMsg']);
                 if($this->userModel->insert($userData)){
                     $file->move(ROOTPATH .'/public/uploads/profile_pic/', $userData['profile_pic']);
-                    if($file->hasMoved()) {
+                    $proof->move(ROOTPATH .'/public/uploads/proofs/', $userData['proof']);
+                    if($file->hasMoved() && $proof->hasMoved()) {
                         $this->sendMail($userData);
                         $this->session->set('successMsg', 'Create account sucessfully, please verify email');
                         // $this->session->setFlashdata('successMsg', 'Create account sucessfully, please verify email');
@@ -141,7 +146,7 @@ class User extends BaseController {
         $data = [
             'id' => $user['id'],
             'email_code' => null,
-            'status' => 'a',
+            'status' => 'v',
         ];
         if($this->userModel->save($data)) {
             $this->session->set('successMsg', 'Account successfully activated');

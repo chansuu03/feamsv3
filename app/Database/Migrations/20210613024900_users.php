@@ -56,6 +56,10 @@ class UserTable extends Migration {
                     'type'           => 'DECIMAL',
                     'constraint'     => '11'
             ],
+            'proof'       => [
+                    'type'           => 'VARCHAR',
+                    'constraint'     => '150'
+            ],
             'email_code'       => [
                     'type'           => 'VARCHAR',
                     'constraint'     => '10'

@@ -104,10 +104,32 @@
     <div class="input-group">
         <div class="custom-file">
             <input type="file" class="custom-file-input <?php if(!empty($errors['image'])) echo 'is-invalid';?>" id="image" name="image" required>
-            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+            <label class="custom-file-label" for="exampleInputFile">Choose image</label>
         </div>
     </div>
     <?php if(isset($errors['image'])): ?>
         <small id="emailHelp" class="form-text text-danger"><?= $errors['image']?></small>
+    <?php endif; ?>
+</div>
+
+<!-- Payment Info -->
+<br>
+<div class="d-flex">
+  <hr class="my-auto flex-grow-1">
+  <div class="px-4">PAYMENT INFORMATION</div>
+  <hr class="my-auto flex-grow-1">
+</div>
+<br>
+
+<div class="form-group">
+    <label for="exampleInputFile">Membership Fee Proof <a class="btn-link" href="#" role="button" data-toggle="modal" data-target="#helpModal"><i class="far fa-question-circle"></i></a></label>
+    <div class="input-group">
+        <div class="custom-file">
+            <input type="file" class="custom-file-input <?php if(!empty($errors['proof'])) echo 'is-invalid';?>" id="proof" name="proof" required>
+            <label class="custom-file-label form-control-file" for="exampleInputFile">Upload an image</label>
+        </div>
+    </div>
+    <?php if(isset($errors['proof'])): ?>
+        <small id="emailHelp" class="form-text text-danger"><?= $errors['proof']?></small>
     <?php endif; ?>
 </div>

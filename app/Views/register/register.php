@@ -23,9 +23,9 @@
       <div class="row">
         <div class="col-md-12">
             <div class="d-flex justify-content-center">
-                <div class="card reg">
+                <div class="card reg my-4">
                     <div class="card-header">
-                        <h3>Registration</h3>
+                        <h3>Registration</h3> 
                     </div>
                     <div class="card-body">
                         <?= view('register/personal_info')?>
@@ -41,6 +41,7 @@
       </div> <!--row-->
     </div> <!--container-->
     <?= form_close();?>
+    <?= view('register/helpmodal')?>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="<?= base_url()?>/dist/adminlte/plugins/jquery/jquery.js"></script>
@@ -78,6 +79,15 @@
         var nextSibling = e.target.nextElementSibling
         nextSibling.innerText = name
         })
+    </script>
+
+    <!-- file uploads para mapalitan agad file name once makaselect na ng file -->
+    <script>/* show file value after file select */
+    $('.custom-file-input').on('change',function(){
+        var fileName = document.getElementById("proof").files[0].name;
+        console.log(fileName);
+        $(this).next('.form-control-file').addClass("selected").html(fileName);
+    })
     </script>
   </body>
 </html>

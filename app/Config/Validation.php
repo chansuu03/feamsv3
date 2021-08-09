@@ -59,6 +59,13 @@ class Validation
 				'ext_in' => 'Profile picture is not an image',
 			],
 		],
+		'proof' => [
+			'label' => 'Membership Fee Proof', 
+			'rules' => 'uploaded[proof]|ext_in[proof,png,jpg,jpeg]',
+			'errors' => [
+				'ext_in' => 'Uploaded proof must be an image file',
+			],
+		],
 	];
 
 	public $roles = [
@@ -336,6 +343,37 @@ class Validation
         'errors' => [
             'required' => 'Cost is required',
             'numeric' => 'Cost only includes numbers',
+        ],
+    ],
+  ];
+
+  public $transactions = [
+    'user_id' => [
+        'rules' => 'required|numeric',
+        'errors' => [
+            'required' => 'Name is required',
+            'numeric' => 'Error in selecting user',
+        ],
+    ],
+    'payment_id' => [
+        'rules' => 'required|numeric',
+        'errors' => [
+            'required' => 'Cost is required',
+            'numeric' => 'Error in selecting payments',
+        ],
+    ],
+    'amount' => [
+        'rules' => 'required|numeric',
+        'errors' => [
+            'required' => 'Cost is required',
+            'numeric' => 'Amount should be in numerical form',
+        ],
+    ],
+    'photo' => [
+        'rules' => 'uploaded[photo]|ext_in[photo,png,jpg,jpeg]',
+        'errors' => [
+            'uploaded' => 'Photo is required',
+            'ext_in' => 'Photo is not an image',
         ],
     ],
   ];
